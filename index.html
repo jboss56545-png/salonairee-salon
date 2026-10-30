@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0F0F0F" />
+<title>SALONAIREE · Luxury Grooming Studio</title>
+<meta name="description" content="Salonairee Salon — Where Precision Meets Luxury Grooming. Premium international products, expert stylists, and value-for-money pricing in a relaxing upscale studio." />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:      '#0F0F0F',
+          espresso: '#181615',
+          gold:     '#D4AF37',
+          goldlite: '#F1DFA0',
+          cream:    '#F5F2EB',
+        },
+        fontFamily: {
+          display: ['Cinzel', 'Playfair Display', 'serif'],
+          body:    ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root{
+    --ink:#0F0F0F;
+    --espresso:#181615;
+    --gold:#D4AF37;
+    --gold-lite:#F1DFA0;
+    --cream:#F5F2EB;
+  }
+
+  *{ -webkit-tap-highlight-color: transparent; }
+
+  html{ scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body{
+    background-color: var(--ink);
+    color: var(--cream);
+    font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: rgba(212,175,55,.35); color: #fff; }
+
+  /* ---------- Scrollbars ---------- */
+  ::-webkit-scrollbar{ width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track{ background: #0a0a0a; }
+  ::-webkit-scrollbar-thumb{ background: linear-gradient(#D4AF37,#8a6d1f); border-radius: 999px; border: 2px solid #0a0a0a; }
+  .nice-scroll::-webkit-scrollbar{ width: 7px; }
+  .nice-scroll::-webkit-scrollbar-thumb{ background: rgba(212,175,55,.45); border: none; }
+
+  /* ---------- Typography helpers ---------- */
+  .font-display{ font-family:'Cinzel','Playfair Display',serif; letter-spacing:.02em; }
+
+  .gold-text{
+    background: linear-gradient(105deg, #B8912A 0%, #F1DFA0 32%, #D4AF37 58%, #F7ECC4 82%, #B8912A 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .eyebrow{
+    display:inline-block;
+    font-size:.68rem;
+    font-weight:700;
+    letter-spacing:.38em;
+    text-transform:uppercase;
+    color: var(--gold);
+    opacity:.9;
+  }
+
+  /* ---------- Gold gradient border card ---------- */
+  .gold-border{
+    position: relative;
+    border-radius: 1.35rem;
+    background: linear-gradient(158deg, rgba(28,25,23,.94), rgba(15,15,15,.96));
+    transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
+  }
+  .gold-border::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius: inherit;
+    padding:1px;
+    background: linear-gradient(145deg, rgba(212,175,55,.62), rgba(212,175,55,.06) 42%, rgba(212,175,55,.05) 62%, rgba(212,175,55,.42));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events:none;
+    transition: background .45s ease, opacity .45s ease;
+  }
+  .gold-border:hover{ box-shadow: 0 24px 60px -30px rgba(212,175,55,.45); }
+  .gold-border:hover::before{
+    background: linear-gradient(145deg, rgba(212,175,55,.95), rgba(212,175,55,.25) 45%, rgba(241,223,160,.7));
+  }
+
+  .glass{
+    background: rgba(24,22,21,.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(212,175,55,.16);
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn-gold{
+    position: relative;
+    background: linear-gradient(135deg, #F1DFA0 0%, #D4AF37 42%, #B8912A 100%);
+    color: #0F0F0F;
+    font-weight: 800;
+    box-shadow: 0 10px 30px -12px rgba(212,175,55,.75);
+    transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, filter .3s ease;
+  }
+  .btn-gold:hover{
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow: 0 0 34px rgba(212,175,55,.55), 0 16px 40px -14px rgba(212,175,55,.85);
+  }
+  .btn-gold:active{ transform: translateY(0) scale(.99); }
+
+  .btn-ghost{
+    border: 1px solid rgba(245,242,235,.22);
+    color: var(--cream);
+    transition: all .3s ease;
+    background: rgba(245,242,235,.02);
+  }
+  .btn-ghost:hover{
+    border-color: rgba(212,175,55,.75);
+    color: var(--gold);
+    background: rgba(212,175,55,.07);
+    box-shadow: 0 0 26px -8px rgba(212,175,55,.5);
+  }
+
+  /* ---------- Nav ---------- */
+  .nav-link{ position:relative; color: rgba(245,242,235,.72); transition: color .3s ease; }
+  .nav-link:hover, .nav-link.active{ color: var(--gold); }
+  .nav-link::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:-7px;
+    width:0; height:1px;
+    background: linear-gradient(90deg, #D4AF37, rgba(212,175,55,0));
+    transition: width .35s ease;
+  }
+  .nav-link:hover::after, .nav-link.active::after{ width:100%; }
+
+  #navbar{ transition: background .45s ease, box-shadow .45s ease, border-color .45s ease, backdrop-filter .45s ease; border-bottom:1px solid transparent; }
+  #navbar.nav-scrolled{
+    background: rgba(15,15,15,.74);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom:1px solid rgba(212,175,55,.15);
+    box-shadow: 0 18px 50px -30px rgba(0,0,0,.95);
+  }
+
+  /* ---------- Add buttons ---------- */
+  .add-btn{
+    display:inline-flex; align-items:center; gap:.4rem;
+    padding:.5rem .95rem;
+    border-radius:9999px;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    border:1px solid rgba(212,175,55,.38);
+    color: var(--gold);
+    background: rgba(212,175,55,.06);
+    transition: all .28s ease;
+    white-space: nowrap;
+  }
+  .add-btn:hover{ background: rgba(212,175,55,.18); box-shadow: 0 0 20px -4px rgba(212,175,55,.45); }
+  .add-btn.is-added{
+    background: linear-gradient(135deg, #F1DFA0, #D4AF37);
+    color:#0F0F0F;
+    border-color: transparent;
+    box-shadow: 0 0 20px -4px rgba(212,175,55,.7);
+  }
+  .add-btn svg{ width:13px; height:13px; }
+
+  /* ---------- Filter tabs ---------- */
+  .filter-tab{
+    padding:.62rem 1.25rem;
+    border-radius:9999px;
+    font-size:.76rem;
+    font-weight:600;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    border:1px solid rgba(245,242,235,.13);
+    color: rgba(245,242,235,.65);
+    background: rgba(245,242,235,.02);
+    transition: all .3s ease;
+    white-space: nowrap;
+  }
+  .filter-tab:hover{ border-color: rgba(212,175,55,.55); color: var(--gold); }
+  .filter-tab.active{
+    background: linear-gradient(135deg, #F1DFA0, #D4AF37 55%, #B8912A);
+    color:#0F0F0F;
+    border-color: transparent;
+    box-shadow: 0 0 26px -8px rgba(212,175,55,.8);
+  }
+
+  /* ---------- Pills / Slots ---------- */
+  .pill{
+    padding:.65rem .5rem;
+    border-radius:.85rem;
+    border:1px solid rgba(245,242,235,.12);
+    font-size:.74rem;
+    font-weight:700;
+    color: rgba(245,242,235,.68);
+    background: rgba(245,242,235,.02);
+    transition: all .25s ease;
+  }
+  .pill:hover{ border-color: rgba(212,175,55,.55); color: var(--gold); }
+  .pill.is-active{
+    background: linear-gradient(135deg, #F1DFA0, #D4AF37 60%, #B8912A);
+    color:#0F0F0F;
+    border-color: transparent;
+    box-shadow: 0 0 22px -6px rgba(212,175,55,.65);
+  }
+
+  .slot{
+    padding:.55rem .25rem;
+    border-radius:.65rem;
+    font-size:.7rem;
+    font-weight:600;
+    border:1px solid rgba(245,242,235,.1);
+    color: rgba(245,242,235,.62);
+    background: rgba(245,242,235,.02);
+    transition: all .2s ease;
+  }
+  .slot:hover:not(:disabled){ border-color: rgba(212,175,55,.6); color: var(--gold); }
+  .slot.is-active{
+    background: linear-gradient(135deg, #F1DFA0, #D4AF37);
+    color:#0F0F0F;
+    border-color: transparent;
+    box-shadow: 0 0 18px -6px rgba(212,175,55,.7);
+  }
+  .slot:disabled{ opacity:.26; cursor: not-allowed; text-decoration: line-through; }
+
+  /* ---------- Checkbox ---------- */
+  .bk-check{ width:17px; height:17px; accent-color: #D4AF37; cursor:pointer; flex-shrink:0; }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{
+    opacity:0;
+    transform: translateY(30px);
+    transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+    will-change: opacity, transform;
+  }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- Misc ---------- */
+  .hero-vignette{
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(212,175,55,.14), transparent 55%),
+      linear-gradient(to right, rgba(15,15,15,.97) 0%, rgba(15,15,15,.82) 42%, rgba(15,15,15,.45) 72%, rgba(15,15,15,.85) 100%),
+      linear-gradient(to bottom, rgba(15,15,15,.85) 0%, rgba(15,15,15,.35) 35%, rgba(15,15,15,.95) 88%, #0F0F0F 100%);
+  }
+
+  .divider-gold{
+    height:1px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,.55), transparent);
+  }
+
+  .wa-pulse::after{
+    content:'';
+    position:absolute; inset:0;
+    border-radius:9999px;
+    box-shadow: 0 0 0 0 rgba(37,211,102,.55);
+    animation: waPulse 2.4s infinite;
+  }
+  @keyframes waPulse{
+    0%{ box-shadow: 0 0 0 0 rgba(37,211,102,.5); }
+    70%{ box-shadow: 0 0 0 18px rgba(37,211,102,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+  }
+
+  .float-slow{ animation: floatSlow 7s ease-in-out infinite; }
+  @keyframes floatSlow{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-12px); } }
+
+  /* Modal transition */
+  #bookingModal{ transition: opacity .3s ease; }
+  #bookingModal.hidden{ display:none; }
+  .modal-enter{ opacity:0; }
+  .modal-panel{ transform: translateY(18px) scale(.985); transition: transform .38s cubic-bezier(.22,1,.36,1); }
+  #bookingModal.open .modal-panel{ transform: translateY(0) scale(1); }
+
+  /* Toast */
+  #toast{
+    transition: opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1);
+    opacity:0; transform: translateY(-14px) scale(.96); pointer-events:none;
+  }
+  #toast.show{ opacity:1; transform: translateY(0) scale(1); }
+
+  body.locked{ overflow:hidden; }
+</style>
+</head>
+
+<body class="bg-ink text-cream font-body antialiased">
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3 group shrink-0">
+        <span class="w-11 h-11 rounded-full grid place-items-center border border-gold/40 relative overflow-hidden"
+              style="background:radial-gradient(circle at 32% 28%, rgba(212,175,55,.28), rgba(15,15,15,.9) 72%)">
+          <i data-lucide="scissors" class="w-[18px] h-[18px] text-gold"></i>
+        </span>
+        <span class="leading-none">
+          <span class="block font-display text-[17px] sm:text-lg tracking-[.24em] text-cream">SALONAIREE</span>
+          <span class="block text-[9px] sm:text-[10px] tracking-[.34em] text-gold/70 mt-1.5 font-medium">सलनियरी · PREMIUM STUDIO</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-9 text-[13px] font-semibold tracking-wide">
+        <a href="#home"     class="nav-link">Home</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#pricing"  class="nav-link">Pricing</a>
+        <a href="#team"     class="nav-link">Master Stylists</a>
+        <a href="#reviews"  class="nav-link">Reviews</a>
+        <a href="#visit"    class="nav-link">Visit Us</a>
+      </nav>
+
+      <!-- CTA -->
+      <div class="flex items-center gap-3">
+        <button onclick="openBooking()"
+                class="btn-gold hidden sm:inline-flex items-center gap-2 px-6 py-3 rounded-full text-[11px] tracking-[.14em] uppercase">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          Book Appointment
+        </button>
+        <button id="menuBtn" aria-label="Open menu"
+                class="lg:hidden w-11 h-11 rounded-full grid place-items-center border border-gold/30 text-gold hover:bg-gold/10 transition">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-gold/10"
+       style="background:rgba(15,15,15,.97); backdrop-filter:blur(20px)">
+    <div class="px-6 py-6 flex flex-col gap-1">
+      <a href="#home"     class="mob-link py-3 text-sm font-semibold text-cream/75 hover:text-gold transition border-b border-white/5">Home</a>
+      <a href="#services" class="mob-link py-3 text-sm font-semibold text-cream/75 hover:text-gold transition border-b border-white/5">Services</a>
+      <a href="#pricing"  class="mob-link py-3 text-sm font-semibold text-cream/75 hover:text-gold transition border-b border-white/5">Pricing</a>
+      <a href="#team"     class="mob-link py-3 text-sm font-semibold text-cream/75 hover:text-gold transition border-b border-white/5">Master Stylists</a>
+      <a href="#reviews"  class="mob-link py-3 text-sm font-semibold text-cream/75 hover:text-gold transition border-b border-white/5">Reviews</a>
+      <a href="#visit"    class="mob-link py-3 text-sm font-semibold text-cream/75 hover:text-gold transition">Visit Us</a>
+      <button onclick="openBooking(); closeMobileMenu();"
+              class="btn-gold mt-4 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-[11px] tracking-[.14em] uppercase">
+        <i data-lucide="sparkles" class="w-4 h-4"></i> Book Appointment
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=2000&q=80"
+         alt="Luxury salon interior"
+         class="w-full h-full object-cover scale-105"
+         onerror="this.style.display='none'">
+    <div class="absolute inset-0 hero-vignette"></div>
+  </div>
+
+  <div class="relative w-full max-w-7xl mx-auto px-5 sm:px-6 pt-32 pb-20">
+    <div class="max-w-3xl">
+
+      <div class="reveal inline-flex items-center gap-3 px-4 py-2 rounded-full glass mb-8">
+        <span class="flex gap-0.5 text-gold">
+          <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+          <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+          <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+          <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+          <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+        </span>
+        <span class="text-[11px] tracking-[.18em] uppercase text-cream/75 font-semibold">4.9 · Google Rated Studio</span>
+      </div>
+
+      <h1 class="reveal font-display text-[2.45rem] leading-[1.08] sm:text-6xl lg:text-[4.4rem] lg:leading-[1.05] text-cream">
+        Where Precision<br>
+        Meets <span class="gold-text italic">Luxury</span> Grooming.
+      </h1>
+
+      <p class="reveal mt-7 text-[15px] sm:text-base leading-relaxed text-cream/60 max-w-xl">
+        A calm, upscale studio where master stylists work with premium international products —
+        delivering detail-obsessed cuts, grooming rituals and spa therapies at genuinely
+        <span class="text-cream/90 font-semibold">value-for-money pricing</span>.
+      </p>
+
+      <div class="reveal mt-10 flex flex-col sm:flex-row gap-4">
+        <button onclick="openBooking()"
+                class="btn-gold inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-[12px] tracking-[.16em] uppercase">
+          <i data-lucide="calendar-check" class="w-4 h-4"></i> Book a Session
+        </button>
+        <a href="#services"
+           class="btn-ghost inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-[12px] tracking-[.16em] uppercase font-semibold">
+          Explore Services
+          <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="reveal mt-14 grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 max-w-xl">
+        <div class="glass rounded-2xl px-5 py-4">
+          <div class="flex items-center gap-2 text-gold mb-1.5">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <span class="font-display text-xl text-cream">4.9</span>
+          </div>
+          <p class="text-[10.5px] tracking-[.16em] uppercase text-cream/45 font-semibold">Google Rating</p>
+        </div>
+        <div class="glass rounded-2xl px-5 py-4">
+          <div class="flex items-center gap-2 text-gold mb-1.5">
+            <i data-lucide="badge-check" class="w-4 h-4"></i>
+            <span class="font-display text-xl text-cream">100%</span>
+          </div>
+          <p class="text-[10.5px] tracking-[.16em] uppercase text-cream/45 font-semibold">Premium Products</p>
+        </div>
+        <div class="glass rounded-2xl px-5 py-4 col-span-2 sm:col-span-1">
+          <div class="flex items-center gap-2 text-gold mb-1.5">
+            <i data-lucide="scissors" class="w-4 h-4"></i>
+            <span class="font-display text-xl text-cream">Expert</span>
+          </div>
+          <p class="text-[10.5px] tracking-[.16em] uppercase text-cream/45 font-semibold">Master Stylists</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-7 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-gold/50">
+    <span class="text-[9px] tracking-[.4em] uppercase">Scroll</span>
+    <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce"></i>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     AMENITIES BAR
+============================================================ -->
+<section class="relative -mt-14 z-20 px-5 sm:px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="gold-border glass rounded-3xl px-5 sm:px-8 py-7 reveal">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4">
+
+        <div class="flex flex-col items-center text-center gap-2.5 group">
+          <span class="w-11 h-11 rounded-full grid place-items-center border border-gold/25 text-gold group-hover:bg-gold/10 group-hover:border-gold/60 transition">
+            <i data-lucide="wifi" class="w-[18px] h-[18px]"></i>
+          </span>
+          <div>
+            <p class="text-[12px] font-bold text-cream/90">Free High-Speed Wi-Fi</p>
+            <p class="text-[10px] tracking-[.1em] uppercase text-cream/35 mt-0.5">Stay Connected</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center text-center gap-2.5 group">
+          <span class="w-11 h-11 rounded-full grid place-items-center border border-gold/25 text-gold group-hover:bg-gold/10 group-hover:border-gold/60 transition">
+            <i data-lucide="coffee" class="w-[18px] h-[18px]"></i>
+          </span>
+          <div>
+            <p class="text-[12px] font-bold text-cream/90">Complimentary Beverages</p>
+            <p class="text-[10px] tracking-[.1em] uppercase text-cream/35 mt-0.5">On The House</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center text-center gap-2.5 group">
+          <span class="w-11 h-11 rounded-full grid place-items-center border border-gold/25 text-gold group-hover:bg-gold/10 group-hover:border-gold/60 transition">
+            <i data-lucide="accessibility" class="w-[18px] h-[18px]"></i>
+          </span>
+          <div>
+            <p class="text-[12px] font-bold text-cream/90">Wheelchair Accessible</p>
+            <p class="text-[10px] tracking-[.1em] uppercase text-cream/35 mt-0.5">Ground Floor</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center text-center gap-2.5 group">
+          <span class="w-11 h-11 rounded-full grid place-items-center border border-gold/25 text-gold group-hover:bg-gold/10 group-hover:border-gold/60 transition">
+            <i data-lucide="car-front" class="w-[18px] h-[18px]"></i>
+          </span>
+          <div>
+            <p class="text-[12px] font-bold text-cream/90">Free On-Site Parking</p>
+            <p class="text-[10px] tracking-[.1em] uppercase text-cream/35 mt-0.5">Hassle Free</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center text-center gap-2.5 group col-span-2 md:col-span-1">
+          <span class="w-11 h-11 rounded-full grid place-items-center border border-gold/25 text-gold group-hover:bg-gold/10 group-hover:border-gold/60 transition">
+            <i data-lucide="credit-card" class="w-[18px] h-[18px]"></i>
+          </span>
+          <div>
+            <p class="text-[12px] font-bold text-cream/90">All Digital Payments</p>
+            <p class="text-[10px] tracking-[.1em] uppercase text-cream/35 mt-0.5">UPI · GPay · Card</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SERVICES & PRICING
+============================================================ -->
+<section id="services" class="relative py-24 md:py-32">
+  <!-- ambient glow -->
+  <div class="pointer-events-none absolute top-1/4 left-0 w-[420px] h-[420px] rounded-full blur-[140px] opacity-[0.16]"
+       style="background:radial-gradient(circle,#D4AF37,transparent 70%)"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-6">
+
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <span class="eyebrow">The Service Menu</span>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mt-4 leading-tight text-cream">
+        Services &amp; <span class="gold-text">Transparent Pricing</span>
+      </h2>
+      <p class="mt-5 text-[14.5px] leading-relaxed text-cream/50">
+        No surprises. Every ritual below is performed with genuine premium international products
+        by trained professionals — priced fairly, always.
+      </p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div id="pricing" class="mt-12 flex flex-wrap justify-center gap-2.5 sm:gap-3 reveal scroll-mt-28">
+      <button class="filter-tab active" data-filter="all">All Services</button>
+      <button class="filter-tab" data-filter="hair">Hair Styling</button>
+      <button class="filter-tab" data-filter="beard">Beard &amp; Grooming</button>
+      <button class="filter-tab" data-filter="skin">Skin &amp; Facials</button>
+      <button class="filter-tab" data-filter="spa">Luxury Spa</button>
+    </div>
+
+    <!-- Service Grid -->
+    <div id="serviceGrid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"></div>
+
+    <!-- Footer note -->
+    <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 text-center reveal">
+      <p class="text-[12.5px] text-cream/40">
+        <i data-lucide="info" class="inline w-3.5 h-3.5 -mt-0.5 text-gold/60"></i>
+        Prices are inclusive of taxes. Final quote may vary with hair length &amp; product selection.
+      </p>
+      <button onclick="openBooking()"
+              class="text-[11.5px] font-bold tracking-[.14em] uppercase text-gold hover:text-goldlite transition inline-flex items-center gap-1.5">
+        Build your booking <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SPOTLIGHT — TEAM & MANAGEMENT
+============================================================ -->
+<section id="team" class="relative py-20 md:py-28 border-y border-gold/10"
+         style="background:linear-gradient(180deg,#0F0F0F,#141210 45%,#0F0F0F)">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6">
+
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <span class="eyebrow">The People</span>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mt-4 leading-tight text-cream">
+        Meet The <span class="gold-text">Masters</span>
+      </h2>
+      <p class="mt-5 text-[14.5px] leading-relaxed text-cream/50">
+        Precision is a craft. Hospitality is a culture. Both are led from the front at Salonairee.
+      </p>
+    </div>
+
+    <div class="mt-14 grid lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+
+      <!-- Arshad -->
+      <div class="gold-border overflow-hidden reveal group">
+        <div class="relative h-72 sm:h-80 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=80"
+               alt="Arshad — Master Stylist"
+               class="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105">
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,.96) 4%,rgba(15,15,15,.25) 48%,rgba(15,15,15,.1) 100%)"></div>
+          <div class="absolute bottom-5 left-6 right-6 flex items-end justify-between gap-4">
+            <div>
+              <span class="text-[9.5px] tracking-[.34em] uppercase text-gold font-bold">Master Stylist</span>
+              <h3 class="font-display text-3xl sm:text-4xl text-cream mt-1.5">Arshad</h3>
+            </div>
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass shrink-0">
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold fill-current"></i>
+              <span class="text-[11px] font-bold text-cream">5.0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8">
+          <p class="text-[14px] leading-relaxed text-cream/60">
+            Celebrated by clients for <span class="text-cream/90 font-semibold">detail-oriented precision</span>
+            and an effortlessly friendly approach. Arshad specialises in tailored cuts, sharp beard
+            architecture and finish-work that photographs beautifully — every single visit.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-full text-[10.5px] font-semibold tracking-[.1em] uppercase border border-gold/25 text-gold/85">Precision Cuts</span>
+            <span class="px-3 py-1.5 rounded-full text-[10.5px] font-semibold tracking-[.1em] uppercase border border-gold/25 text-gold/85">Beard Sculpting</span>
+            <span class="px-3 py-1.5 rounded-full text-[10.5px] font-semibold tracking-[.1em] uppercase border border-gold/25 text-gold/85">Styling</span>
+          </div>
+
+          <button onclick="openBooking('Arshad')"
+                  class="btn-gold mt-7 w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-[11px] tracking-[.16em] uppercase">
+            <i data-lucide="calendar-check" class="w-4 h-4"></i> Book with Arshad
+          </button>
+        </div>
+      </div>
+
+      <!-- Owner's Vision -->
+      <div class="flex flex-col gap-6">
+
+        <div class="gold-border p-7 sm:p-9 reveal flex-1">
+          <div class="flex items-center gap-4 mb-5">
+            <span class="w-12 h-12 rounded-full grid place-items-center border border-gold/35 text-gold shrink-0"
+                  style="background:radial-gradient(circle at 32% 28%, rgba(212,175,55,.22), transparent 72%)">
+              <i data-lucide="crown" class="w-5 h-5"></i>
+            </span>
+            <div>
+              <span class="text-[9.5px] tracking-[.34em] uppercase text-gold font-bold">Owner's Vision</span>
+              <h3 class="font-display text-2xl text-cream mt-1">Hospitality First</h3>
+            </div>
+          </div>
+
+          <p class="text-[14px] leading-relaxed text-cream/60">
+            Known for a <span class="text-cream/90 font-semibold">polite, welcoming nature</span>, the owner
+            built Salonairee around one belief: luxury should feel warm, never intimidating. That means
+            top-tier hygiene standards, genuine premium products on every station, and a team that
+            remembers your name.
+          </p>
+
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="rounded-xl border border-white/8 bg-white/[0.02] px-4 py-3.5">
+              <i data-lucide="shield-check" class="w-4 h-4 text-gold mb-2"></i>
+              <p class="text-[11.5px] font-bold text-cream/85">Top-Tier Hygiene</p>
+            </div>
+            <div class="rounded-xl border border-white/8 bg-white/[0.02] px-4 py-3.5">
+              <i data-lucide="heart-handshake" class="w-4 h-4 text-gold mb-2"></i>
+              <p class="text-[11.5px] font-bold text-cream/85">Warm Welcome</p>
+            </div>
+            <div class="rounded-xl border border-white/8 bg-white/[0.02] px-4 py-3.5">
+              <i data-lucide="flask-conical" class="w-4 h-4 text-gold mb-2"></i>
+              <p class="text-[11.5px] font-bold text-cream/85">Genuine Products</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick highlight strip -->
+        <div class="grid grid-cols-3 gap-3 reveal">
+          <div class="glass rounded-2xl px-3 py-5 text-center">
+            <p class="font-display text-2xl gold-text">4.9★</p>
+            <p class="text-[9.5px] tracking-[.16em] uppercase text-cream/40 mt-1.5 font-semibold">Rated</p>
+          </div>
+          <div class="glass rounded-2xl px-3 py-5 text-center">
+            <p class="font-display text-2xl gold-text">12h</p>
+            <p class="text-[9.5px] tracking-[.16em] uppercase text-cream/40 mt-1.5 font-semibold">Open Daily</p>
+          </div>
+          <div class="glass rounded-2xl px-3 py-5 text-center">
+            <p class="font-display text-2xl gold-text">∞</p>
+            <p class="text-[9.5px] tracking-[.16em] uppercase text-cream/40 mt-1.5 font-semibold">Repeat Guests</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REVIEWS
+============================================================ -->
+<section id="reviews" class="relative py-24 md:py-32">
+  <div class="pointer-events-none absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full blur-[150px] opacity-[0.13]"
+       style="background:radial-gradient(circle,#D4AF37,transparent 70%)"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-6">
+
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <span class="eyebrow">Verified Guests</span>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mt-4 leading-tight text-cream">
+        Loved By <span class="gold-text">Our Guests</span>
+      </h2>
+
+      <div class="mt-6 inline-flex items-center gap-3 px-5 py-3 rounded-full glass">
+        <span class="flex gap-0.5 text-gold">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </span>
+        <span class="text-[12px] font-bold text-cream/85">4.9 / 5.0</span>
+        <span class="w-px h-4 bg-white/15"></span>
+        <span class="text-[11px] tracking-[.1em] uppercase text-cream/45 font-semibold">Google Reviews</span>
+      </div>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-5 sm:gap-6">
+
+      <!-- Review 1 -->
+      <article class="gold-border p-7 reveal flex flex-col">
+        <div class="flex items-center justify-between mb-5">
+          <span class="flex gap-0.5 text-gold">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </span>
+          <span class="inline-flex items-center gap-1 text-[9.5px] font-bold tracking-[.1em] uppercase text-emerald-400/90 px-2.5 py-1 rounded-full border border-emerald-400/25 bg-emerald-400/[0.06]">
+            <i data-lucide="badge-check" class="w-3 h-3"></i> Verified
+          </span>
+        </div>
+
+        <p class="text-[14px] leading-relaxed text-cream/70 flex-1">
+          “Arshad did an incredible job with my haircut and styling! Super friendly staff and very
+          detail-oriented service.”
+        </p>
+
+        <div class="mt-6 pt-5 border-t border-white/8 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-full grid place-items-center font-display text-sm text-gold border border-gold/30 shrink-0"
+                style="background:radial-gradient(circle at 32% 28%, rgba(212,175,55,.2), transparent 72%)">R</span>
+          <div>
+            <p class="text-[12.5px] font-bold text-cream/90">Rahul M.</p>
+            <p class="text-[10.5px] text-cream/35">Google Review · Local Guide</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Review 2 -->
+      <article class="gold-border p-7 reveal flex flex-col" style="transition-delay:.09s">
+        <div class="flex items-center justify-between mb-5">
+          <span class="flex gap-0.5 text-gold">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </span>
+          <span class="inline-flex items-center gap-1 text-[9.5px] font-bold tracking-[.1em] uppercase text-emerald-400/90 px-2.5 py-1 rounded-full border border-emerald-400/25 bg-emerald-400/[0.06]">
+            <i data-lucide="badge-check" class="w-3 h-3"></i> Verified
+          </span>
+        </div>
+
+        <p class="text-[14px] leading-relaxed text-cream/70 flex-1">
+          “The owner is extremely polite and welcoming. The salon has a very clean, relaxing ambience
+          and uses genuine premium products.”
+        </p>
+
+        <div class="mt-6 pt-5 border-t border-white/8 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-full grid place-items-center font-display text-sm text-gold border border-gold/30 shrink-0"
+                style="background:radial-gradient(circle at 32% 28%, rgba(212,175,55,.2), transparent 72%)">S</span>
+          <div>
+            <p class="text-[12.5px] font-bold text-cream/90">Sneha K.</p>
+            <p class="text-[10.5px] text-cream/35">Google Review</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Review 3 -->
+      <article class="gold-border p-7 reveal flex flex-col" style="transition-delay:.18s">
+        <div class="flex items-center justify-between mb-5">
+          <span class="flex gap-0.5 text-gold">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </span>
+          <span class="inline-flex items-center gap-1 text-[9.5px] font-bold tracking-[.1em] uppercase text-emerald-400/90 px-2.5 py-1 rounded-full border border-emerald-400/25 bg-emerald-400/[0.06]">
+            <i data-lucide="badge-check" class="w-3 h-3"></i> Verified
+          </span>
+        </div>
+
+        <p class="text-[14px] leading-relaxed text-cream/70 flex-1">
+          “Best salon experience! The rates are very reasonable and value-for-money compared to
+          other luxury salons.”
+        </p>
+
+        <div class="mt-6 pt-5 border-t border-white/8 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-full grid place-items-center font-display text-sm text-gold border border-gold/30 shrink-0"
+                style="background:radial-gradient(circle at 32% 28%, rgba(212,175,55,.2), transparent 72%)">A</span>
+          <div>
+            <p class="text-[12.5px] font-bold text-cream/90">Aman S.</p>
+            <p class="text-[10.5px] text-cream/35">Google Review</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     VISIT US
+============================================================ -->
+<section id="visit" class="relative py-20 md:py-28 border-t border-gold/10"
+         style="background:linear-gradient(180deg,#0F0F0F,#141210 50%,#0F0F0F)">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6">
+
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <span class="eyebrow">Find Us</span>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mt-4 leading-tight text-cream">
+        Visit The <span class="gold-text">Studio</span>
+      </h2>
+      <p class="mt-5 text-[14.5px] leading-relaxed text-cream/50">
+        Ground floor access, free parking and a warm welcome — seven days a week.
+      </p>
+    </div>
+
+    <div class="mt-12 grid lg:grid-cols-5 gap-6">
+
+      <!-- Address & Hours -->
+      <div class="lg:col-span-3 gold-border p-7 sm:p-9 reveal">
+        <div class="grid sm:grid-cols-2 gap-8">
+
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-10 h-10 rounded-full grid place-items-center border border-gold/30 text-gold shrink-0">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
+              </span>
+              <h3 class="font-display text-lg text-cream">Address</h3>
+            </div>
+            <p class="text-[13.5px] leading-relaxed text-cream/60">
+              <span class="text-cream/90 font-semibold">Salonairee Salon</span><br>
+              Ground Floor, Shop 23, 24 &amp; 25,<br>
+              Tower-A.
+            </p>
+            <a href="https://maps.app.goo.gl/q3q1BVBjESMqFgGM6" target="_blank" rel="noopener"
+               class="mt-5 inline-flex items-center gap-2 text-[11.5px] font-bold tracking-[.12em] uppercase text-gold hover:text-goldlite transition">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Open in Maps
+            </a>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-10 h-10 rounded-full grid place-items-center border border-gold/30 text-gold shrink-0">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+              </span>
+              <h3 class="font-display text-lg text-cream">Hours</h3>
+            </div>
+            <div class="space-y-2.5">
+              <div class="flex items-center justify-between text-[13px]">
+                <span class="text-cream/55">Monday – Sunday</span>
+                <span class="text-cream/90 font-semibold">10:00 AM – 9:00 PM</span>
+              </div>
+              <div class="divider-gold my-3"></div>
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-[11px] tracking-[.14em] uppercase text-emerald-400/90 font-bold">Open Daily</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-8 pt-7 border-t border-white/8 flex flex-col sm:flex-row gap-3">
+          <a href="https://maps.app.goo.gl/q3q1BVBjESMqFgGM6" target="_blank" rel="noopener"
+             class="btn-gold inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-[11px] tracking-[.14em] uppercase">
+            <i data-lucide="map" class="w-4 h-4"></i> Get Directions on Google Maps
+          </a>
+          <button onclick="openBooking()"
+                  class="btn-ghost inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-[11px] tracking-[.14em] uppercase font-bold">
+            <i data-lucide="calendar-check" class="w-4 h-4"></i> Reserve a Slot
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick contact card -->
+      <div class="lg:col-span-2 gold-border p-7 sm:p-9 reveal flex flex-col" style="transition-delay:.1s">
+        <span class="eyebrow">Quick Chat</span>
+        <h3 class="font-display text-2xl text-cream mt-3">Prefer WhatsApp?</h3>
+        <p class="text-[13.5px] leading-relaxed text-cream/55 mt-3 flex-1">
+          Message us directly for availability, bridal packages or group bookings.
+          We usually reply within minutes during studio hours.
+        </p>
+
+        <div class="mt-6 space-y-3">
+          <a href="https://wa.me/919876543210?text=Hi%20Salonairee!%20I%27d%20like%20to%20know%20more%20about%20your%20services."
+             target="_blank" rel="noopener"
+             class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-[11.5px] tracking-[.12em] uppercase font-bold transition hover:brightness-110"
+             style="background:linear-gradient(135deg,#25D366,#128C7E); color:#062b16;">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Chat on WhatsApp
+          </a>
+
+          <div class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-white/8 bg-white/[0.02]">
+            <i data-lucide="credit-card" class="w-4 h-4 text-gold shrink-0"></i>
+            <p class="text-[11.5px] text-cream/60">UPI · Google Pay · Cards · Cash</p>
+          </div>
+          <div class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-white/8 bg-white/[0.02]">
+            <i data-lucide="car-front" class="w-4 h-4 text-gold shrink-0"></i>
+            <p class="text-[11.5px] text-cream/60">Free on-site parking for guests</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="relative border-t border-gold/12 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6">
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3">
+          <span class="w-11 h-11 rounded-full grid place-items-center border border-gold/40"
+                style="background:radial-gradient(circle at 32% 28%, rgba(212,175,55,.28), rgba(15,15,15,.9) 72%)">
+            <i data-lucide="scissors" class="w-[18px] h-[18px] text-gold"></i>
+          </span>
+          <div>
+            <p class="font-display text-lg tracking-[.24em] text-cream">SALONAIREE</p>
+            <p class="text-[9.5px] tracking-[.34em] text-gold/70 mt-1 font-medium">सलनियरी · PREMIUM STUDIO</p>
+          </div>
+        </div>
+
+        <p class="mt-6 text-[13.5px] leading-relaxed text-cream/45 max-w-md">
+          A luxury grooming studio built on precision, hygiene and genuine hospitality.
+          Premium international products, expert stylists, and pricing that respects your wallet.
+        </p>
+
+        <div class="mt-6 flex gap-2.5">
+          <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full grid place-items-center border border-white/10 text-cream/50 hover:text-gold hover:border-gold/50 transition">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </a>
+          <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full grid place-items-center border border-white/10 text-cream/50 hover:text-gold hover:border-gold/50 transition">
+            <i data-lucide="facebook" class="w-4 h-4"></i>
+          </a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="WhatsApp"
+             class="w-10 h-10 rounded-full grid place-items-center border border-white/10 text-cream/50 hover:text-gold hover:border-gold/50 transition">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+          </a>
+          <a href="https://maps.app.goo.gl/q3q1BVBjESMqFgGM6" target="_blank" rel="noopener" aria-label="Google Maps"
+             class="w-10 h-10 rounded-full grid place-items-center border border-white/10 text-cream/50 hover:text-gold hover:border-gold/50 transition">
+            <i data-lucide="map-pin" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-[10.5px] tracking-[.28em] uppercase text-gold font-bold mb-5">Explore</h4>
+        <ul class="space-y-3 text-[13px] text-cream/50">
+          <li><a href="#home" class="hover:text-gold transition">Home</a></li>
+          <li><a href="#services" class="hover:text-gold transition">Services</a></li>
+          <li><a href="#pricing" class="hover:text-gold transition">Pricing</a></li>
+          <li><a href="#team" class="hover:text-gold transition">Master Stylists</a></li>
+          <li><a href="#reviews" class="hover:text-gold transition">Reviews</a></li>
+          <li><a href="#visit" class="hover:text-gold transition">Visit Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-[10.5px] tracking-[.28em] uppercase text-gold font-bold mb-5">Visit</h4>
+        <ul class="space-y-3.5 text-[13px] text-cream/50">
+          <li class="flex gap-2.5">
+            <i data-lucide="map-pin" class="w-4 h-4 text-gold/60 shrink-0 mt-0.5"></i>
+            <span>Ground Floor, Shop 23, 24 &amp; 25,<br>Tower-A.</span>
+          </li>
+          <li class="flex gap-2.5">
+            <i data-lucide="clock" class="w-4 h-4 text-gold/60 shrink-0 mt-0.5"></i>
+            <span>Open Daily · 10:00 AM – 9:00 PM</span>
+          </li>
+          <li class="flex gap-2.5">
+            <i data-lucide="phone" class="w-4 h-4 text-gold/60 shrink-0 mt-0.5"></i>
+            <a href="tel:+919876543210" class="hover:text-gold transition">+91 98765 43210</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="divider-gold my-9"></div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11.5px] text-cream/30">
+      <p>© <span id="year"></span> Salonairee Salon. All rights reserved.</p>
+      <p class="flex items-center gap-1.5">
+        Crafted with <i data-lucide="heart" class="w-3.5 h-3.5 text-gold/60 fill-current"></i> for a premium grooming experience
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     FLOATING WHATSAPP
+============================================================ -->
+<a href="https://wa.me/919876543210?text=Hi%20Salonairee!%20I%27d%20like%20to%20book%20an%20appointment."
+   target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+   class="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-[60] w-14 h-14 rounded-full grid place-items-center shadow-2xl wa-pulse transition-transform hover:scale-110"
+   style="background:linear-gradient(135deg,#25D366,#128C7E); box-shadow:0 12px 34px -10px rgba(37,211,102,.75)">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#062b16" class="w-7 h-7">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+
+<!-- ============================================================
+     TOAST
+============================================================ -->
+<div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-[200] px-5 py-3.5 rounded-2xl glass flex items-center gap-2.5 max-w-[92vw]">
+  <i data-lucide="check-circle" class="w-4 h-4 text-gold shrink-0"></i>
+  <span id="toastMsg" class="text-[12.5px] font-semibold text-cream/90">Message</span>
+</div>
+
+
+<!-- ============================================================
+     BOOKING MODAL
+============================================================ -->
+<div id="bookingModal" class="fixed inset-0 z-[150] hidden">
+  <div class="absolute inset-0 bg-black/85 backdrop-blur-md" data-close-modal></div>
+
+  <div class="absolute inset-0 overflow-y-auto nice-scroll p-3 sm:p-6 flex items-start sm:items-center justify-center">
+    <div class="modal-panel relative w-full max-w-3xl rounded-3xl overflow-hidden my-2 sm:my-4"
+         style="background:linear-gradient(162deg,#1B1816,#0F0F0F 70%); border:1px solid rgba(212,175,55,.28); box-shadow:0 50px 140px -40px rgba(0,0,0,.98);">
+
+      <!-- ================= BOOKING FORM VIEW ================= -->
+      <div id="bookingFormView">
+
+        <!-- Header -->
+        <div class="sticky top-0 z-20 flex items-center justify-between gap-4 px-5 sm:px-7 py-5 border-b border-white/10"
+             style="background:rgba(15,15,15,.94); backdrop-filter:blur(14px)">
+          <div>
+            <span class="eyebrow text-[9px]">Reserve Your Seat</span>
+            <h3 class="font-display text-xl sm:text-2xl text-cream mt-1.5">Book an Appointment</h3>
+          </div>
+          <button type="button" data-close-modal aria-label="Close"
+                  class="w-10 h-10 rounded-full grid place-items-center border border-white/12 text-cream/60 hover:text-gold hover:border-gold/60 transition shrink-0">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Body -->
+        <div class="px-5 sm:px-7 py-6 space-y-8">
+
+          <!-- Services -->
+          <div>
+            <div class="flex items-center justify-between mb-3.5">
+              <h4 class="text-[11px] tracking-[.22em] uppercase font-bold text-gold">1 · Select Services</h4>
+              <span id="bkCount" class="text-[11px] text-cream/40 font-semibold">0 selected</span>
+            </div>
+            <div id="bkServices" class="grid sm:grid-cols-2 gap-2 max-h-[280px] overflow-y-auto nice-scroll pr-1"></div>
+          </div>
+
+          <!-- Stylist -->
+          <div>
+            <h4 class="text-[11px] tracking-[.22em] uppercase font-bold text-gold mb-3.5">2 · Preferred Stylist</h4>
+            <div class="grid grid-cols-3 gap-2" id="stylistPicker">
+              <button type="button" class="pill" data-stylist="Arshad">Arshad</button>
+              <button type="button" class="pill" data-stylist="Senior Stylist">Senior Stylist</button>
+              <button type="button" class="pill is-active" data-stylist="Any Available">Any Available</button>
+            </div>
+          </div>
+
+          <!-- Date & Time -->
+          <div>
+            <h4 class="text-[11px] tracking-[.22em] uppercase font-bold text-gold mb-3.5">3 · Date &amp; Time</h4>
+
+            <input type="date" id="bkDate"
+                   class="w-full bg-white/[0.03] border border-white/12 rounded-xl px-4 py-3 text-[13.5px] text-cream outline-none focus:border-gold/70 transition mb-4"
+                   style="color-scheme: dark;">
+
+            <div id="slotWrap" class="grid grid-cols-3 sm:grid-cols-5 gap-2 max-h-[190px] overflow-y-auto nice-scroll pr-1"></div>
+            <p id="slotNote" class="text-[11px] text-cream/35 mt-2.5">Slots run daily from 10:00 AM to 9:00 PM.</p>
+          </div>
+
+          <!-- Details -->
+          <div>
+            <h4 class="text-[11px] tracking-[.22em] uppercase font-bold text-gold mb-3.5">4 · Your Details</h4>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[10.5px] tracking-[.14em] uppercase text-cream/40 font-semibold mb-1.5">Full Name</label>
+                <input type="text" id="bkName" placeholder="e.g. Rohan Sharma" autocomplete="name"
+                       class="w-full bg-white/[0.03] border border-white/12 rounded-xl px-4 py-3 text-[13.5px] text-cream placeholder:text-cream/25 outline-none focus:border-gold/70 transition">
+              </div>
+              <div>
+                <label class="block text-[10.5px] tracking-[.14em] uppercase text-cream/40 font-semibold mb-1.5">Phone Number</label>
+                <input type="tel" id="bkPhone" placeholder="10-digit mobile number" autocomplete="tel" inputmode="numeric"
+                       class="w-full bg-white/[0.03] border border-white/12 rounded-xl px-4 py-3 text-[13.5px] text-cream placeholder:text-cream/25 outline-none focus:border-gold/70 transition">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="sticky bottom-0 z-20 px-5 sm:px-7 py-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+             style="background:rgba(15,15,15,.95); backdrop-filter:blur(14px)">
+          <div class="w-full sm:w-auto text-center sm:text-left">
+            <p class="text-[9.5px] tracking-[.24em] uppercase text-cream/35 font-bold">Estimated Total</p>
+            <p id="bkTotal" class="font-display text-3xl gold-text leading-none mt-1.5">₹0</p>
+          </div>
+          <button type="button" onclick="confirmBooking()"
+                  class="btn-gold w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-[11.5px] tracking-[.16em] uppercase">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Confirm Booking
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ================= SUCCESS VIEW ================= -->
+      <div id="bookingSuccessView" class="hidden">
+        <div class="px-6 sm:px-10 py-12 text-center">
+
+          <div class="w-20 h-20 mx-auto rounded-full grid place-items-center mb-7 float-slow"
+               style="background:radial-gradient(circle at 32% 28%, rgba(212,175,55,.3), rgba(212,175,55,.05) 72%); border:1px solid rgba(212,175,55,.45)">
+            <i data-lucide="check" class="w-9 h-9 text-gold"></i>
+          </div>
+
+          <span class="eyebrow">Reservation Requested</span>
+          <h3 class="font-display text-2xl sm:text-3xl text-cream mt-3">Thank You, <span id="successName" class="gold-text">Guest</span></h3>
+          <p class="text-[13.5px] text-cream/50 mt-3 max-w-md mx-auto leading-relaxed">
+            Your booking request has been recorded. Tap the button below to send the confirmation
+            to our studio on WhatsApp — we'll lock in your slot right away.
+          </p>
+
+          <div id="successSummary" class="mt-7 text-left rounded-2xl border border-white/10 bg-white/[0.02] p-5 space-y-2.5 max-w-md mx-auto text-[12.5px]"></div>
+
+          <div class="mt-7 flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+            <a id="waConfirmBtn" href="#" target="_blank" rel="noopener"
+               class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-[11.5px] tracking-[.12em] uppercase font-bold transition hover:brightness-110"
+               style="background:linear-gradient(135deg,#25D366,#128C7E); color:#062b16;">
+              <i data-lucide="message-circle" class="w-4 h-4"></i> Send on WhatsApp
+            </a>
+            <button type="button" onclick="closeBooking()"
+                    class="btn-ghost flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-[11.5px] tracking-[.12em] uppercase font-bold">
+              Done
+            </button>
+          </div>
+
+          <p class="text-[10.5px] text-cream/30 mt-6">
+            Reference saved locally on this device · Studio hours 10:00 AM – 9:00 PM
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+/* ============================================================
+   CONFIG
+============================================================ */
+const WHATSAPP_NUMBER = '919876543210'; // ← Replace with the studio's real WhatsApp number (country code + number, no +)
+const STORAGE_KEY     = 'salonairee_bookings';
+
+/* ============================================================
+   DATA
+============================================================ */
+const SERVICES = [
+  /* ---------- HAIR STYLING ---------- */
+  { id:'h1', cat:'hair', name:'Signature Precision Haircut', price:499, dur:45, popular:true,
+    desc:'Consultation-led cut tailored to your face shape, hair texture and lifestyle.' },
+  { id:'h2', cat:'hair', name:'Advanced Layer Cut & Blow Dry', price:799, dur:60,
+    desc:'Multi-layer structuring finished with a salon-grade blow dry and shine serum.' },
+  { id:'h3', cat:'hair', name:'Global Hair Colour (Ammonia-Free)', price:1899, dur:90,
+    desc:'Premium ammonia-free global colour with a conditioning post-treatment.' },
+  { id:'h4', cat:'hair', name:'Keratin Smoothening', price:2999, dur:120, popular:true,
+    desc:'Frizz-free, glass-smooth finish using an international keratin system.' },
+  { id:'h5', cat:'hair', name:'Luxury Hair Spa & Scalp Detox', price:999, dur:60,
+    desc:'Deep-cleansing scalp ritual with a nourishing mask and pressure-point massage.' },
+  { id:'h6', cat:'hair', name:'Party Styling & Curls', price:699, dur:45,
+    desc:'Event-ready blowouts, waves or curls with long-hold professional finishing.' },
+
+  /* ---------- BEARD & GROOMING ---------- */
+  { id:'b1', cat:'beard', name:'Royal Beard Sculpt & Shape', price:299, dur:30, popular:true,
+    desc:'Precision line-work and contouring for a defined, camera-ready beard.' },
+  { id:'b2', cat:'beard', name:'Hot Towel Luxury Shave', price:399, dur:35,
+    desc:'Traditional hot-towel prep, rich lather and a soothing after-balm finish.' },
+  { id:'b3', cat:'beard', name:'Beard Colour & Grey Blend', price:499, dur:40,
+    desc:'Natural-looking grey coverage matched precisely to your beard tone.' },
+  { id:'b4', cat:'beard', name:'Express Trim & Edges', price:199, dur:20,
+    desc:'Quick clean-up of length, neckline and edges — perfect between visits.' },
+  { id:'b5', cat:'beard', name:'Complete Groom Package', price:1299, dur:90,
+    desc:'Haircut + beard sculpt + detan facial. Our most-loved value bundle.' },
+
+  /* ---------- SKIN & FACIALS ---------- */
+  { id:'s1', cat:'skin', name:'Vitamin C Glow Facial', price:1199, dur:60, popular:true,
+    desc:'Brightening vitamin-C protocol that evens tone and restores natural radiance.' },
+  { id:'s2', cat:'skin', name:'Hydra Deep Cleanse Facial', price:1499, dur:70,
+    desc:'Pore-level cleansing with hydration infusion for a fresh, plump finish.' },
+  { id:'s3', cat:'skin', name:'Anti-Acne Clarifying Facial', price:999, dur:50,
+    desc:'Gentle salicylic-based care that calms breakouts and reduces excess oil.' },
+  { id:'s4', cat:'skin', name:'Gold Radiance Facial', price:1799, dur:75,
+    desc:'Luxury gold-infused ritual for firming, luminosity and a silky texture.' },
+  { id:'s5', cat:'skin', name:'De-Tan & Brightening Pack', price:699, dur:40,
+    desc:'Fast-acting de-tan therapy to lift sun damage from face and neck.' },
+
+  /* ---------- LUXURY SPA ---------- */
+  { id:'p1', cat:'spa', name:'Aroma Relaxation Body Massage', price:1599, dur:60, popular:true,
+    desc:'Full-body Swedish-style massage with calming essential aroma oils.' },
+  { id:'p2', cat:'spa', name:'Head, Neck & Shoulder Massage', price:799, dur:40,
+    desc:'Targeted relief for screen-time tension and stiff shoulders.' },
+  { id:'p3', cat:'spa', name:'Foot Reflexology Ritual', price:699, dur:35,
+    desc:'Pressure-point foot therapy that resets tired legs and improves circulation.' },
+  { id:'p4', cat:'spa', name:'Full Body Spa Ritual', price:2499, dur:90,
+    desc:'Scrub, steam, massage and moisturise — the complete 90-minute reset.' },
+  { id:'p5', cat:'spa', name:'Couple Spa Package', price:3999, dur:120,
+    desc:'Side-by-side aromatherapy massage for two in our private spa suite.' },
+];
+
+/* ============================================================
+   STATE
+============================================================ */
+const cart = new Set();
+const state = {
+  filter: 'all',
+  stylist: 'Any Available',
+  date: '',
+  time: '',
+};
+
+/* ============================================================
+   HELPERS
+============================================================ */
+const $  = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+function inr(n){ return '₹' + n.toLocaleString('en-IN'); }
+function refreshIcons(){ if (window.lucide) lucide.createIcons(); }
+
+function showToast(msg, type = 'success'){
+  const toast = $('#toast');
+  const msgEl = $('#toastMsg');
+  msgEl.textContent = msg;
+  const icon = toast.querySelector('i, svg');
+  if (icon) {
+    const color = type === 'error' ? '#F87171' : '#D4AF37';
+    icon.style.color = color;
+  }
+  toast.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => toast.classList.remove('show'), 2600);
+}
+
+function todayISO(){
+  const d = new Date();
+  const off = d.getTimezoneOffset();
+  return new Date(d.getTime() - off * 60000).toISOString().split('T')[0];
+}
+
+function prettyDate(iso){
+  if (!iso) return '—';
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-IN', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+}
+
+/* ============================================================
+   RENDER: SERVICE GRID
+============================================================ */
+function renderServices(){
+  const grid = $('#serviceGrid');
+  const list = state.filter === 'all'
+    ? SERVICES
+    : SERVICES.filter(s => s.cat === state.filter);
+
+  grid.innerHTML = list.map((s, i) => `
+    <article class="gold-border p-6 flex flex-col group reveal" style="transition-delay:${Math.min(i * 45, 320)}ms">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="font-display text-[16.5px] leading-snug text-cream pr-1">${s.name}</h3>
+        ${s.popular
+          ? `<span class="shrink-0 text-[8.5px] font-bold tracking-[.14em] uppercase px-2.5 py-1 rounded-full border border-gold/35 text-gold/90 bg-gold/[0.07]">Popular</span>`
+          : ''}
+      </div>
+
+      <p class="text-[12.5px] leading-relaxed text-cream/45 mt-2.5 flex-1">${s.desc}</p>
+
+      <div class="flex items-end justify-between gap-3 mt-5 pt-4 border-t border-white/8">
+        <div>
+          <p class="font-display text-[21px] gold-text leading-none">${inr(s.price)}</p>
+          <p class="flex items-center gap-1.5 text-[10.5px] text-cream/35 mt-1.5 font-semibold tracking-wide">
+            <i data-lucide="clock" class="w-3 h-3"></i> ${s.dur} min
+          </p>
+        </div>
+        <button type="button" class="add-btn" data-add-service="${s.id}" aria-label="Add ${s.name}">
+          <i data-lucide="plus"></i><span>Add</span>
+        </button>
+      </div>
+    </article>
+  `).join('');
+
+  refreshIcons();
+  syncGridButtons();
+  observeReveals();
+}
+
+/* ============================================================
+   FILTER TABS
+============================================================ */
+function initFilters(){
+  $$('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      $$('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      state.filter = tab.dataset.filter;
+      renderServices();
+    });
+  });
+}
+
+/* ============================================================
+   CART / GRID BUTTON SYNC
+============================================================ */
+function syncGridButtons(){
+  $$('[data-add-service]').forEach(btn => {
+    const id = btn.dataset.addService;
+    const added = cart.has(id);
+    btn.classList.toggle('is-added', added);
+    btn.innerHTML = added
+      ? `<i data-lucide="check"></i><span>Added</span>`
+      : `<i data-lucide="plus"></i><span>Add</span>`;
+  });
+  refreshIcons();
+}
+
+function toggleService(id){
+  if (cart.has(id)) {
+    cart.delete(id);
+    showToast('Service removed from booking');
+  } else {
+    cart.add(id);
+    const s = SERVICES.find(x => x.id === id);
+    showToast(`${s.name} added · ${inr(s.price)}`);
+  }
+  syncGridButtons();
+  syncModalCheckboxes();
+  updateTotals();
+}
+
+/* Delegated add/remove from the service grid */
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-add-service]');
+  if (!btn) return;
+  toggleService(btn.dataset.addService);
+});
+
+/* ============================================================
+   MODAL SERVICE CHECKLIST
+============================================================ */
+function renderModalServices(){
+  const wrap = $('#bkServices');
+  wrap.innerHTML = SERVICES.map(s => `
+    <label class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl border border-white/8 bg-white/[0.02] hover:border-gold/40 cursor-pointer transition">
+      <input type="checkbox" class="bk-check" data-svc="${s.id}" ${cart.has(s.id) ? 'checked' : ''}>
+      <span class="flex-1 text-[12px] leading-tight text-cream/80">${s.name}</span>
+      <span class="text-[12px] font-bold text-gold shrink-0">${inr(s.price)}</span>
+    </label>
+  `).join('');
+
+  wrap.addEventListener('change', (e) => {
+    const cb = e.target.closest('input[data-svc]');
+    if (!cb) return;
+    const id = cb.dataset.svc;
+    if (cb.checked) cart.add(id); else cart.delete(id);
+    syncGridButtons();
+    updateTotals();
+  });
+}
+
+function syncModalCheckboxes(){
+  $$('#bkServices input[data-svc]').forEach(cb => {
+    cb.checked = cart.has(cb.dataset.svc);
+  });
+}
+
+/* ============================================================
+   TOTALS
+============================================================ */
+function cartTotal(){
+  let total = 0;
+  cart.forEach(id => {
+    const s = SERVICES.find(x => x.id === id);
+    if (s) total += s.price;
+  });
+  return total;
+}
+
+function updateTotals(){
+  const total = cartTotal();
+  const totalEl = $('#bkTotal');
+  if (totalEl) totalEl.textContent = inr(total);
+  const countEl = $('#bkCount');
+  if (countEl) countEl.textContent = `${cart.size} selected`;
+}
+
+/* ============================================================
+   TIME SLOTS
+============================================================ */
+function generateSlots(){
+  const slots = [];
+  for (let m = 10 * 60; m <= 21 * 60; m += 30) {
+    const h = Math.floor(m / 60);
+    const mm = m % 60;
+    const suffix = h >= 12 ? 'PM' : 'AM';
+    const h12 = h % 12 === 0 ? 12 : h % 12;
+    slots.push(`${h12}:${String(mm).padStart(2, '0')} ${suffix}`);
+  }
+  return slots;
+}
+
+function renderSlots(){
+  const wrap = $('#slotWrap');
+  const slots = generateSlots();
+  const selectedDate = state.date || todayISO();
+  const isToday = selectedDate === todayISO();
+  const now = new Date();
+  const nowMinutes = now.getHours() * 60 + now.getMinutes();
+
+  wrap.innerHTML = slots.map(slot => {
+    // Convert slot label back to minutes for comparison
+    const [time, suffix] = slot.split(' ');
+    let [hh, mm] = time.split(':').map(Number);
+    if (suffix === 'PM' && hh !== 12) hh += 12;
+    if (suffix === 'AM' && hh === 12) hh = 0;
+    const slotMinutes = hh * 60 + mm;
+
+    const disabled = isToday && slotMinutes <= nowMinutes + 30;
+    const active = state.time === slot;
+
+    return `<button type="button"
+              class="slot ${active ? 'is-active' : ''}"
+              data-slot="${slot}"
+              ${disabled ? 'disabled' : ''}>${slot}</button>`;
+  }).join('');
+
+  wrap.querySelectorAll('.slot:not(:disabled)').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.time = btn.dataset.slot;
+      $$('#slotWrap .slot').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+    });
+  });
+
+  $('#slotNote').textContent = isToday
+    ? 'Showing today\'s remaining slots (10:00 AM – 9:00 PM).'
+    : 'Slots run daily from 10:00 AM to 9:00 PM.';
+}
+
+/* ============================================================
+   STYLIST PICKER
+============================================================ */
+function initStylistPicker(){
+  $$('#stylistPicker [data-stylist]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('#stylistPicker [data-stylist]').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      state.stylist = btn.dataset.stylist;
+    });
+  });
+}
+
+/* ============================================================
+   MODAL OPEN / CLOSE
+============================================================ */
+function openBooking(preselectStylist){
+  const modal = $('#bookingModal');
+  modal.classList.remove('hidden');
+  document.body.classList.add('locked');
+  requestAnimationFrame(() => modal.classList.add('open'));
+
+  // Reset to form view
+  $('#bookingFormView').classList.remove('hidden');
+  $('#bookingSuccessView').classList.add('hidden');
+
+  // Reset date to today if empty / past
+  const dateInput = $('#bkDate');
+  dateInput.min = todayISO();
+  if (!state.date || state.date < todayISO()) state.date = todayISO();
+  dateInput.value = state.date;
+
+  // Stylist preselection
+  if (preselectStylist) {
+    state.stylist = preselectStylist;
+    $$('#stylistPicker [data-stylist]').forEach(b => {
+      b.classList.toggle('is-active', b.dataset.stylist === preselectStylist);
+    });
+  }
+
+  renderModalServices();
+  renderSlots();
+  updateTotals();
+  refreshIcons();
+
+  // Focus first field after animation
+  setTimeout(() => { const n = $('#bkName'); if (n && !cart.size) n.blur(); }, 380);
+}
+
+function closeBooking(){
+  const modal = $('#bookingModal');
+  modal.classList.remove('open');
+  document.body.classList.remove('locked');
+  setTimeout(() => modal.classList.add('hidden'), 220);
+}
+
+function closeMobileMenu(){
+  $('#mobileMenu').classList.add('hidden');
+  $('#menuBtn').innerHTML = '<i data-lucide="menu" class="w-5 h-5"></i>';
+  refreshIcons();
+}
+
+/* Delegated close */
+document.addEventListener('click', (e) => {
+  if (e.target.closest('[data-close-modal]')) closeBooking();
+});
+
+/* ESC closes modal */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (!$('#bookingModal').classList.contains('hidden')) closeBooking();
+    closeMobileMenu();
+  }
+});
+
+/* ============================================================
+   CONFIRM BOOKING
+============================================================ */
+function confirmBooking(){
+  const name  = $('#bkName').value.trim();
+  const phone = $('#bkPhone').value.trim();
+  const digits = phone.replace(/\D/g, '');
+
+  if (cart.size === 0) return showToast('Please select at least one service', 'error');
+  if (!state.date)     return showToast('Please choose a date', 'error');
+  if (!state.time)     return showToast('Please choose a time slot', 'error');
+  if (name.length < 2) return showToast('Please enter your full name', 'error');
+  if (digits.length < 10) return showToast('Please enter a valid phone number', 'error');
+
+  const selected = SERVICES.filter(s => cart.has(s.id));
+  const total = cartTotal();
+  const ref = 'SLN-' + Date.now().toString(36).toUpperCase().slice(-6);
+
+  const booking = {
+    ref,
+    name,
+    phone,
+    stylist: state.stylist,
+    date: state.date,
+    time: state.time,
+    services: selected.map(s => ({ id: s.id, name: s.name, price: s.price, dur: s.dur })),
+    total,
+    createdAt: new Date().toISOString(),
+  };
+
+  /* ---- Persist to localStorage history ---- */
+  try {
+    const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    history.push(booking);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  } catch (err) {
+    console.warn('Could not save booking to localStorage', err);
+  }
+
+  /* ---- Build WhatsApp message ---- */
+  const lines = [
+    '*SALONAIREE — APPOINTMENT REQUEST*',
+    `Ref: ${ref}`,
+    '',
+    `*Name:* ${name}`,
+    `*Phone:* ${phone}`,
+    '',
+    '*Services:*',
+    ...selected.map(s => `• ${s.name} — ${inr(s.price)} (${s.dur} min)`),
+    '',
+    `*Preferred Stylist:* ${state.stylist}`,
+    `*Date:* ${prettyDate(state.date)}`,
+    `*Time:* ${state.time}`,
+    '',
+    `*Estimated Total:* ${inr(total)}`,
+    '',
+    'Please confirm my slot. Thank you!',
+  ];
+  const waText = encodeURIComponent(lines.join('\n'));
+  const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
+
+  /* ---- Success view ---- */
+  $('#successName').textContent = name.split(' ')[0];
+  $('#successSummary').innerHTML = `
+    <div class="flex justify-between gap-3"><span class="text-cream/40">Reference</span><span class="font-bold text-gold">${ref}</span></div>
+    <div class="flex justify-between gap-3"><span class="text-cream/40">Stylist</span><span class="text-cream/85 font-semibold">${state.stylist}</span></div>
+    <div class="flex justify-between gap-3"><span class="text-cream/40">Date</span><span class="text-cream/85 font-semibold">${prettyDate(state.date)}</span></div>
+    <div class="flex justify-between gap-3"><span class="text-cream/40">Time</span><span class="text-cream/85 font-semibold">${state.time}</span></div>
+    <div class="flex justify-between gap-3"><span class="text-cream/40">Services</span><span class="text-cream/85 font-semibold">${selected.length}</span></div>
+    <div class="pt-2.5 mt-2.5 border-t border-white/10 flex justify-between gap-3">
+      <span class="text-cream/40">Total</span>
+      <span class="font-display text-lg gold-text">${inr(total)}</span>
+    </div>
+  `;
+
+  $('#waConfirmBtn').href = waURL;
+
+  $('#bookingFormView').classList.add('hidden');
+  $('#bookingSuccessView').classList.remove('hidden');
+  $('#bookingModal .modal-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  refreshIcons();
+
+  // Auto-open WhatsApp after a short beat
+  setTimeout(() => {
+    window.open(waURL, '_blank', 'noopener');
+  }, 850);
+
+  showToast('Booking saved! Sending to WhatsApp…');
+}
+
+/* ============================================================
+   NAVBAR + MOBILE MENU
+============================================================ */
+function initNavbar(){
+  const navbar = $('#navbar');
+  const onScroll = () => {
+    navbar.classList.toggle('nav-scrolled', window.scrollY > 30);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const menuBtn = $('#menuBtn');
+  const mobileMenu = $('#mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    if (isHidden) {
+      mobileMenu.classList.remove('hidden');
+      menuBtn.innerHTML = '<i data-lucide="x" class="w-5 h-5"></i>';
+    } else {
+      mobileMenu.classList.add('hidden');
+      menuBtn.innerHTML = '<i data-lucide="menu" class="w-5 h-5"></i>';
+    }
+    refreshIcons();
+  });
+
+  $$('.mob-link').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  /* Active link highlighting */
+  const sections = ['home','services','team','reviews','visit']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  const navLinks = $$('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+  sections.forEach(sec => observer.observe(sec));
+}
+
+/* ============================================================
+   REVEAL ON SCROLL
+============================================================ */
+let revealObserver;
+function observeReveals(){
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  }
+  $$('.reveal:not(.in)').forEach(el => revealObserver.observe(el));
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Year
+  $('#year').textContent = new Date().getFullYear();
+
+  // Date input constraints + change handler
+  const dateInput = $('#bkDate');
+  dateInput.min = todayISO();
+  dateInput.value = todayISO();
+  state.date = todayISO();
+
+  dateInput.addEventListener('change', () => {
+    state.date = dateInput.value;
+    state.time = '';
+    renderSlots();
+  });
+
+  // Init modules
+  initNavbar();
+  initFilters();
+  initStylistPicker();
+  renderServices();
+  updateTotals();
+  observeReveals();
+  refreshIcons();
+
+  // Sanity: expose functions used in inline handlers
+  window.openBooking = openBooking;
+  window.closeBooking = closeBooking;
+  window.confirmBooking = confirmBooking;
+  window.closeMobileMenu = closeMobileMenu;
+
+  // Re-run icon refresh once fonts settle
+  setTimeout(refreshIcons, 400);
+});
+
+/* Refresh icons if Lucide loaded late */
+window.addEventListener('load', refreshIcons);
+</script>
+</body>
+  </html>
